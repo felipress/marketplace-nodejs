@@ -107,7 +107,18 @@ const removeUser = async (req, res) => {
 // User address controller functions
 const addUserAddress = async (req, res) => {
     try{
-
+        const address = await userService.addUserAddress(req.params.id, req.body)
+        console.log(address.ok)
+        if(address.ok == 1){
+            return res.status(200).send({
+                message: `Endereço adicionado com sucesso.`
+            })
+        }
+        else{
+            return res.status(400).send({
+                message: `Aconteceu um erro inesperado. Tente novamente!`
+            })
+        }
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
@@ -118,7 +129,18 @@ const addUserAddress = async (req, res) => {
 }
 const removeUserAddress = async (req, res) => {
     try{
+        const address = userService.removeUserAddress(req.body.userId, req.body.addressId)
 
+        if(address.ok == 1){
+            return res.status(200).send({
+                message: `Endereço removido com sucesso.`
+            })
+        }
+        else{
+            return res.status(400).send({
+                message: `Aconteceu um erro inesperado. Tente novamente!`
+            })
+        }
     }
     catch(err){
         console.log(`Erro: ${err.message}`)

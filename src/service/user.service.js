@@ -22,12 +22,35 @@ const removeUser = (id) => {
 }
 
 // User address functions
-const addUserAddress = (id, address) => {
-
+const addUserAddress = (userId, userAddress) => {
+    return User.findOneAndUpdate(
+        {
+            _id: userId
+        },
+        {
+            $push: {
+                address: userAddress
+            }
+        },
+        {
+            rawResults: true
+        }
+    )
 }
 
-const removeUserAddress = (id) => {
-
+const removeUserAddress = (userId, addressId) => {
+    return User.findOneAndUpdate(
+        {
+            _id: userId
+        },
+        {
+            $pull: {
+                address: {
+                    _id: addressId
+                }
+            }
+        }
+    )
 }
 
 // User favorite products
