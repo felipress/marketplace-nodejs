@@ -1,6 +1,7 @@
 // Dependencies
 const express = require("express")
 const connectToDatabase = require("./src/database/database")
+const userRoutes = require("./src/router/user.router")
 
 // Initializing Express app
 const app = express()
@@ -11,6 +12,9 @@ app.use(express.json())
 
 // Connecting to database
 connectToDatabase()
+
+// Calling routes
+app.use("/user", userRoutes)
 
 // Welcome
 app.get("/", (req, res) => {
