@@ -85,7 +85,7 @@ const removeUser = async (req, res) => {
     try{
         const deletedUser = await userService.removeUser(req.params.id)
 
-        if(deletedUser.deletedCount > 0){
+        if(deletedUser != null){
             return res.status(200).send({
                 message: "Usuário deletado com sucesso."
             })
