@@ -1,10 +1,28 @@
+const userService = require("../service/user.service")
+
+// User CRUD functions
 const findUserById = async (req, res) => {
     try{
-
+        const user = await userService.findUserById(req.params.id)
+        if(!user){
+            return res.status(404).send({
+                message: `Usuário não encontrado, tente novamente.`
+            })
+        }
+        
+        return res.status(200).send(user)
     }
     catch(err){
+        // Return error message if ID is incorrect
+        if(err){
+            console.log(err.kind == "ObjectId")
+            return res.status(400).send({
+                message: `O ID informado está incorreto. Tente novamente!`
+            })
+        }
+
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
@@ -12,7 +30,8 @@ const findUserById = async (req, res) => {
 
 const findAllUsers = async (req, res) => {
     try{
-
+        const users = await userService.findAllUsers()
+        return res.status(200).send(users)
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
@@ -24,31 +43,15 @@ const findAllUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
     try{
+        const body = req.body
 
-    }
-    catch(err){
-        console.log(`Erro: ${err.message}`)
-        res.status(500).send({
-            message: `Aconteceu um erro inesperado. Tente novamente!`
-        })
-    }
-}
+        // Validating required fields
+        validateRequiredField(res, "name", body.name)
+        validateRequiredField(res, "email", body.email)
+        validateRequiredField(res, "password", body.password)
 
-const addUserAddress = async (req, res) => {
-    try{
-
-    }
-    catch(err){
-        console.log(`Erro: ${err.message}`)
-        res.status(500).send({
-            message: `Aconteceu um erro inesperado. Tente novamente!`
-        })
-    }
-}
-
-const addUserFavoriteProduct = async (req, res) => {
-    try{
-        
+        // Creating user in the database
+        return res.status(201).send(await userService.createUser(body))
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
@@ -60,7 +63,15 @@ const addUserFavoriteProduct = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try{
+        const body = req.body
 
+        // Validating required fields
+        validateRequiredField(res, "name", body.name)
+        validateRequiredField(res, "email", body.email)
+        validateRequiredField(res, "password", body.password)
+
+        // Updating user in the database
+        return res.send(await userService.updateUser(req.params.id, req.body))
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
@@ -72,7 +83,18 @@ const updateUser = async (req, res) => {
 
 const removeUser = async (req, res) => {
     try{
+        const deletedUser = await userService.removeUser(req.params.id)
 
+        if(deletedUser.deletedCount > 0){
+            return res.status(200).send({
+                message: "Usuário deletado com sucesso."
+            })
+        }
+        else{
+            return res.status(404).send({
+                messagE: "Usuário não encontrado. Tente novamente."
+            })
+        }
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
@@ -82,6 +104,18 @@ const removeUser = async (req, res) => {
     }
 }
 
+// User address controller functions
+const addUserAddress = async (req, res) => {
+    try{
+
+    }
+    catch(err){
+        console.log(`Erro: ${err.message}`)
+        res.status(500).send({
+            message: `Aconteceu um erro inesperado. Tente novamente!`
+        })
+    }
+}
 const removeUserAddress = async (req, res) => {
     try{
 
@@ -94,6 +128,18 @@ const removeUserAddress = async (req, res) => {
     }
 }
 
+// User favorite product functions
+const addUserFavoriteProduct = async (req, res) => {
+    try{
+        
+    }
+    catch(err){
+        console.log(`Erro: ${err.message}`)
+        res.status(500).send({
+            message: `Aconteceu um erro inesperado. Tente novamente!`
+        })
+    }
+}
 const removeUserFavoriteProduct = async (req, res) => {
     try{
 
@@ -102,6 +148,15 @@ const removeUserFavoriteProduct = async (req, res) => {
         console.log(`Erro: ${err.message}`)
         res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
+        })
+    }
+}
+
+// Validate required fields function 
+const validateRequiredField = (res, label, field) => {
+    if(!field){
+        return res.status(400).send({
+            message: `O campo ${label} precisa é obrigatório.`
         })
     }
 }
