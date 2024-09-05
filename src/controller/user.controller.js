@@ -110,7 +110,7 @@ const addUserAddress = async (req, res) => {
         const address = await userService.addUserAddress(req.params.id, req.body)
         console.log(address.ok)
         if(address.ok == 1){
-            return res.status(200).send({
+            return res.status(201).send({
                 message: `Endereço adicionado com sucesso.`
             })
         }
@@ -129,7 +129,10 @@ const addUserAddress = async (req, res) => {
 }
 const removeUserAddress = async (req, res) => {
     try{
-        const address = userService.removeUserAddress(req.body.userId, req.body.addressId)
+        const {userId, addressId} = req.body
+        const address = await userService.removeUserAddress(userId, addressId)
+
+        console.log(address)
 
         if(address.ok == 1){
             return res.status(200).send({
