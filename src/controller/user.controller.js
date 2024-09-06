@@ -108,8 +108,8 @@ const removeUser = async (req, res) => {
 const addUserAddress = async (req, res) => {
     try{
         const address = await userService.addUserAddress(req.params.id, req.body)
-        console.log(address.ok)
-        if(address.ok == 1){
+
+        if(address.address != null){
             return res.status(201).send({
                 message: `Endereço adicionado com sucesso.`
             })
@@ -132,9 +132,15 @@ const removeUserAddress = async (req, res) => {
         const {userId, addressId} = req.body
         const address = await userService.removeUserAddress(userId, addressId)
 
-        console.log(address)
+        // Check's if the value was deleted from database
+        let found = false
+        address.address.map((value, key) => {
+            if(value._id == addressId){
+                found = true
+            }
+        })
 
-        if(address.ok == 1){
+        if(found == true){
             return res.status(200).send({
                 message: `Endereço removido com sucesso.`
             })
