@@ -2,8 +2,10 @@ const express = require("express")
 const router = express.Router()
 const userController = require("../controller/user.controller")
 
+const authMiddleware = require("../middleware/auth.middleware")
+
 // GET routes
-router.get("/findById/:id", userController.findUserById)
+router.get("/findById/:id", authMiddleware, userController.findUserById)
 router.get("/findAll", userController.findAllUsers)
 
 // POST routes
