@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
 })
 
 // Encrypting password 10 times using bcrypt
-UserSchema.pre("save", async (next) => {
+UserSchema.pre("save", async function (next){
     if(this.password){
         this.password = await bcrypt.hash(this.password, 10)
     }
