@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const bcrypt = require("bcrypt")
 
 const UserSchema = new mongoose.Schema({
     name: {type: String, required: true},
@@ -22,6 +23,14 @@ const UserSchema = new mongoose.Schema({
         }
     ],*/
     adminUser: {type: Boolean, required: true, default: false}
+})
+
+// Encrypting password 10 times using bcrypt
+UserSchema.pre("save", async (next) => {
+    if(this.password){
+        this.password = await bcrypt.hash(this.password, 10)
+    }
+    next()
 })
 
 const User = mongoose.model("users", UserSchema)
