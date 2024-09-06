@@ -2,6 +2,7 @@
 const express = require("express")
 const connectToDatabase = require("./src/database/database")
 const userRoutes = require("./src/router/user.router")
+const authRoutes = require("./src/router/auth.router")
 
 // Initializing Express app
 const app = express()
@@ -15,6 +16,7 @@ connectToDatabase()
 
 // Calling routes
 app.use("/user", userRoutes)
+app.use("/auth", authRoutes)
 
 // Welcome
 app.get("/", (req, res) => {
