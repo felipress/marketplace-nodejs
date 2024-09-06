@@ -15,8 +15,8 @@ const login = async (req, res) => {
         })
     }
     else{
-        return res.status(400).send({
-            message: `Usuário não foi encontrado`
+        return res.status(401).send({
+            message: `E-mail ou senha inválidos.`
         })
     }
 }
