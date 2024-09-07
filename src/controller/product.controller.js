@@ -33,7 +33,7 @@ const createProduct = async (req, res) => {
             userId: req.userId
         }
         const product = await productService.createProduct(body)
-        return res.status(200).send(product)
+        return res.status(201).send(product)
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
