@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
         })
     }
 
-    jwt.verify(token, "7124jkj!&$*14rm1012091949!)(*$908AnajJKSmka71480", async (err, decoded) => {
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
         if(err){
             return res.status(500).send({
                 message: "Token inválido."

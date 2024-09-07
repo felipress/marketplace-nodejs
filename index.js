@@ -1,8 +1,15 @@
 // Dependencies
 const express = require("express")
+
+// Dotenv
+const dotenv = require("dotenv")
+dotenv.config()
+
+// Databased
 const connectToDatabase = require("./src/database/database")
 const userRoutes = require("./src/router/user.router")
 const authRoutes = require("./src/router/auth.router")
+
 
 // Initializing Express app
 const app = express()

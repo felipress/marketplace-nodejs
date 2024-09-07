@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const connectToDatabase = () => {
     try{
-        mongoose.connect("mongodb://localhost:27017/marketplace")
+        mongoose.connect(process.env.DATABASE)
         console.log(`The MongoDB server is connected.`)
     }
     catch(err){

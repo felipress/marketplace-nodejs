@@ -6,7 +6,7 @@ const login = (email) => {
 }
 
 const generateToken = (userId) => {
-    return jwt.sign({id: userId}, "7124jkj!&$*14rm1012091949!)(*$908AnajJKSmka71480", {expiresIn: 86400})
+    return jwt.sign({id: userId}, process.env.SECRET, {expiresIn: 86400})
 }
 
 module.exports = {
