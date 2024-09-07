@@ -5,10 +5,11 @@ const express = require("express")
 const dotenv = require("dotenv")
 dotenv.config()
 
-// Databased
+// Database and routes require
 const connectToDatabase = require("./src/database/database")
 const userRoutes = require("./src/router/user.router")
 const authRoutes = require("./src/router/auth.router")
+const productRoutes = require("./src/router/product.router")
 
 
 // Initializing Express app
@@ -24,6 +25,7 @@ connectToDatabase()
 // Calling routes
 app.use("/user", userRoutes)
 app.use("/auth", authRoutes)
+app.use("/product", productRoutes)
 
 // Welcome
 app.get("/", (req, res) => {

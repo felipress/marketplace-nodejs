@@ -35,7 +35,7 @@ const findAllUsers = async (req, res) => {
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
@@ -55,7 +55,7 @@ const createUser = async (req, res) => {
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
@@ -75,7 +75,7 @@ const updateUser = async (req, res) => {
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
@@ -98,7 +98,7 @@ const removeUser = async (req, res) => {
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
@@ -122,7 +122,7 @@ const addUserAddress = async (req, res) => {
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
@@ -153,7 +153,7 @@ const removeUserAddress = async (req, res) => {
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
@@ -166,7 +166,7 @@ const addUserFavoriteProduct = async (req, res) => {
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
@@ -177,7 +177,7 @@ const removeUserFavoriteProduct = async (req, res) => {
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
-        res.status(500).send({
+        return res.status(500).send({
             message: `Aconteceu um erro inesperado. Tente novamente!`
         })
     }
