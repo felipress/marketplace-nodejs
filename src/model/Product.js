@@ -6,12 +6,12 @@ const ProdutoSchema = new mongoose.Schema({
     unitPrice: {type: Number, required: true},
     image: {type: String, required: true},
     barcode: {type: Number, unique: true, required: true},
-    /*category: [
+    category: [
         {
-            _id: {type: mongoose.Schema.Types.ObjectId, required: true, unique: true, ref: "categories"},
+            _id: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "categories"},
             createAt: {type: Date, required: true, default: Date.now()}
         }
-    ]*/
+    ]
 })
 
 const Product = mongoose.model("products", ProdutoSchema)
