@@ -11,7 +11,7 @@ const userRoutes = require("./src/router/user.router")
 const authRoutes = require("./src/router/auth.router")
 const productRoutes = require("./src/router/product.router")
 const categoryRoutes = require("./src/router/category.router")
-
+const shoppingCartRoutes = require("./src/router/shoppingCart.router")
 
 // Initializing Express app
 const app = express()
@@ -28,6 +28,7 @@ app.use("/user", userRoutes)
 app.use("/auth", authRoutes)
 app.use("/product", productRoutes)
 app.use("/category", categoryRoutes)
+app.use("/shoppingCart", shoppingCartRoutes)
 
 // Welcome
 app.get("/", (req, res) => {

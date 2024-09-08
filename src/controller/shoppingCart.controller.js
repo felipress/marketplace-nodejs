@@ -28,7 +28,11 @@ const findAllShoppingCarts = async (req, res) => {
 
 const createShoppingCart = async (req, res) => {
     try{
-        const shoppingCart = await ShoppingCartService.createShoppingCart(req.body)
+        const body = {
+            ...req.body,
+            userId: req.userId
+        }
+        const shoppingCart = await ShoppingCartService.createShoppingCart(body)
         return res.status(201).send(shoppingCart)
     }
     catch(err){
