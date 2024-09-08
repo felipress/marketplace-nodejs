@@ -71,8 +71,8 @@ const removeProduct = async (req, res) => {
 
 const addProductCategory = async (req, res) => {
     try{
-        const product = await productService.addProductCategory(req.params.id, req.body)
-        return res.status(201).send(product)
+        const category = await productService.addProductCategory(req.params.id, req.body)
+        return res.status(201).send(category)
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
@@ -84,8 +84,8 @@ const addProductCategory = async (req, res) => {
 
 const removeProductCategory = async (req, res) => {
     try{
-        const product = await productService.removeProductCategory(req.body)
-        return res.status(200).send(product)
+        const category = await productService.removeProductCategory(req.body)
+        return res.status(200).send(category)
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
