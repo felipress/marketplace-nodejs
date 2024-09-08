@@ -10,7 +10,7 @@ router.put("/update/:id", authMiddleware, productController.updateProduct)
 router.delete("/remove/:id", authMiddleware, productController.removeProduct)
 
 // Product category
-router.get("/addProductCategory/:id", authMiddleware, productController.addProductCategory)
+router.post("/addProductCategory/:id", authMiddleware, productController.addProductCategory)
 router.delete("/removeProductCategory", authMiddleware, productController.removeProductCategory)
 
 module.exports = router
