@@ -10,15 +10,15 @@ router.get("/findAll", userController.findAllUsers)
 
 // POST routes
 router.post("/create", userController.createUser)
-router.post("/addAddress/:id", userController.addUserAddress)
-router.post("/addFavoriteProduct/:id", userController.addUserFavoriteProduct)
+router.post("/addAddress/:id", authMiddleware, userController.addUserAddress)
+router.post("/addFavoriteProduct/:id", authMiddleware, userController.addUserFavoriteProduct)
 
 // PUT route
-router.put("/update/:id", userController.updateUser)
+router.put("/update/:id", authMiddleware, userController.updateUser)
 
 // DELETE routes
-router.delete("/remove/:id", userController.removeUser)
-router.delete("/removeAddress", userController.removeUserAddress)
-router.delete("/removeFavoriteProduct", userController.removeUserFavoriteProduct)
+router.delete("/remove/:id", authMiddleware, userController.removeUser)
+router.delete("/removeAddress", authMiddleware, userController.removeUserAddress)
+router.delete("/removeFavoriteProduct/:id", authMiddleware, userController.removeUserFavoriteProduct)
 
 module.exports = router

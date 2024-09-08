@@ -162,7 +162,8 @@ const removeUserAddress = async (req, res) => {
 // User favorite product functions
 const addUserFavoriteProduct = async (req, res) => {
     try{
-        
+        const favoriteProduct = await userService.addUserFavoriteProduct(req.params.id, req.body)
+        return res.status(201).send(favoriteProduct)
     }
     catch(err){
         console.log(`Erro: ${err.message}`)
@@ -173,7 +174,8 @@ const addUserFavoriteProduct = async (req, res) => {
 }
 const removeUserFavoriteProduct = async (req, res) => {
     try{
-
+        const favoriteProduct = await userService.removeUserFavoriteProduct(req.params.id, req.body)
+        return res.status(200).send(favoriteProduct)
     }
     catch(err){
         console.log(`Erro: ${err.message}`)

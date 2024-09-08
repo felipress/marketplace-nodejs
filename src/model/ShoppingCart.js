@@ -14,7 +14,7 @@ const ShoppingCartSchema = new mongoose.Schema({
     userId: {type: mongoose.Schema.Types.ObjectId, ref: "users"}
 })
 
-const ShoppingCart = mongoose.model("ShoppingCart", ShoppingCartSchema)
+const ShoppingCart = mongoose.model("shoppingcarts", ShoppingCartSchema)
 
 module.exports = ShoppingCart
 

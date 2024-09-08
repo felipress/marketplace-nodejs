@@ -55,11 +55,30 @@ const removeUserAddress = (userId, addressId) => {
 
 // User favorite products
 const addUserFavoriteProduct = (id, product) => {
-
+    return User.findOneAndUpdate(
+        {_id: id},
+        {
+            $push: {
+                favorite_products: {
+                    _id: product
+                }
+            }
+        },
+        {rawResults: true}
+    )
 }
 
-const removeUserFavoriteProduct = (id) => {
-
+const removeUserFavoriteProduct = (id, product) => {
+    return User.findOneAndUpdate(
+        {_id: id},
+        {
+            $pull: {
+                favorite_products: {
+                    _id: product
+                }
+            }
+        }
+    )
 }
 
 module.exports = {
