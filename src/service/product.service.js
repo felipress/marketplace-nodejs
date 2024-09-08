@@ -20,10 +20,44 @@ const removeProduct = (id) => {
     return Product.findByIdAndDelete(id)
 }
 
+const addProductCategory = (id, category) => {
+    return Product.findOneAndUpdate(
+        {_id: id},
+        {
+            $push: {
+                category: {
+                    _id: category.id
+                }
+            }
+        },
+        {
+            rawResult: true
+        }
+    )
+}
+
+const removeProductCategory = (category) => {
+    return Product.findOneAndUpdate(
+        {_id: category.id},
+        {
+            $pull: {
+                category: {
+                    _id: category.id
+                }
+            }
+        },
+        {
+            rawResult: true
+        }
+    )
+}
+
 module.exports = {
     findProductById,
     findAllProducts,
     createProduct,
     updateProduct,
-    removeProduct
+    removeProduct,
+    addProductCategory,
+    removeProductCategory
 }

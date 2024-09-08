@@ -69,10 +69,38 @@ const removeProduct = async (req, res) => {
     }
 }
 
+const addProductCategory = async (req, res) => {
+    try{
+        const product = await productService.addProductCategory(req.params.id, req.body)
+        return res.status(201).send(product)
+    }
+    catch(err){
+        console.log(`Erro: ${err.message}`)
+        return res.status(500).send({
+            message: `Aconteceu um erro inesperado. Tente novamente!`
+        })
+    }
+}
+
+const removeProductCategory = async (req, res) => {
+    try{
+        const product = await productService.removeProductCategory(req.body)
+        return res.status(200).send(product)
+    }
+    catch(err){
+        console.log(`Erro: ${err.message}`)
+        return res.status(500).send({
+            message: `Aconteceu um erro inesperado. Tente novamente!`
+        })
+    }
+}
+
 module.exports = {
     findProductById,
     findAllProducts,
     createProduct,
     updateProduct,
-    removeProduct
+    removeProduct,
+    addProductCategory,
+    removeProductCategory
 }
