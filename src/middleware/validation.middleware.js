@@ -1,3 +1,5 @@
+const ObjectId = require("mongoose").Types.ObjectId
+
 // Validating user required attributes
 const validateUser = (req, res, next) => {
     let errors = []
@@ -105,6 +107,18 @@ const validateShoppingCart = (req, res, next) => {
     }
 }
 
+const validateId = (req, res, next) => {
+    if(ObjectId.isValid(req.params.id)){
+        return next();
+    }
+    else{
+        return res.status(400).send({
+            message: `O ID informado não é válido.`
+        })
+    }
+}
+
+// Private function 
 const validateRequiredAttribute = (errorArray, attribute, label) => {
     if(!attribute){
         errorArray.push(label)
@@ -116,5 +130,6 @@ module.exports = {
     validateProduct,
     validateCategory,
     validateOrder,
-    validateShoppingCart
+    validateShoppingCart,
+    validateId
 }
