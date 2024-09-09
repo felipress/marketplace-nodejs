@@ -60,7 +60,7 @@ const addUserFavoriteProduct = (id, product) => {
         {
             $push: {
                 favorite_products: {
-                    _id: product
+                    _id: product.id
                 }
             }
         },
@@ -74,7 +74,7 @@ const removeUserFavoriteProduct = (id, product) => {
         {
             $pull: {
                 favorite_products: {
-                    _id: product
+                    _id: product.id
                 }
             }
         },
