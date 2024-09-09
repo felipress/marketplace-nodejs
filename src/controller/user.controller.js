@@ -30,7 +30,7 @@ const findUserById = async (req, res) => {
 
 const findAllUsers = async (req, res) => {
     try{
-        const users = await userService.findAllUsers()
+        const users = await userService.findAllUsers(req.query.limit, req.query.offset)
         return res.status(200).send(users)
     }
     catch(err){

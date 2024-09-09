@@ -4,8 +4,8 @@ const findOrderById = (id) => {
     return Order.findById(id)
 }
 
-const findAllOrders = () => {
-    return Order.find()
+const findAllOrders = (limit, offset) => {
+    return Order.find().limit(limit).skip(offset)
 }
 
 const createOrder = (body) => {

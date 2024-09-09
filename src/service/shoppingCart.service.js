@@ -4,8 +4,8 @@ const findShoppingCartById = (id) => {
     return ShoppingCart.findById(id)
 }
 
-const findAllShoppingCarts = () => {
-    return ShoppingCart.find()
+const findAllShoppingCarts = (limit, offset) => {
+    return ShoppingCart.find().limit(limit).skip(offset)
 }
 
 const createShoppingCart = (body) => {

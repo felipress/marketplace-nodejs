@@ -15,7 +15,7 @@ const findOrderById = async (req, res) => {
 
 const findAllOrders = async (req, res) => {
     try{
-        const orders = await orderService.findAllOrders()
+        const orders = await orderService.findAllOrders(req.query.limit, req.query.offset)
         return res.status(200).send(orders)
     }
     catch(err){

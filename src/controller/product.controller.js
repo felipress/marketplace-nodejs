@@ -15,7 +15,7 @@ const findProductById = async (req, res) => {
 
 const findAllProducts = async (req, res) => {
     try{
-        const products = await productService.findAllProducts()
+        const products = await productService.findAllProducts(req.query.limit, req.query.offset)
         return res.status(200).send({products})
     }
     catch(err){

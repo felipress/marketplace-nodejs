@@ -5,8 +5,8 @@ const findUserById = (id) => {
     return User.findById(id)
 }
 
-const findAllUsers = () => {
-    return User.find()
+const findAllUsers = (limit, offset) => {
+    return User.find().limit(limit).skip(offset)
 }
 
 const createUser = (body) => {

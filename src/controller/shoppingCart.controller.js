@@ -15,7 +15,7 @@ const findShoppingCartById =  async (req, res) => {
 
 const findAllShoppingCarts = async (req, res) => {
     try{
-        const shoppingCarts = await ShoppingCartService.findAllShoppingCarts()
+        const shoppingCarts = await ShoppingCartService.findAllShoppingCarts(req.query.limit, req.query.offset)
         return res.status(200).send(shoppingCarts)
     }
     catch(err){
