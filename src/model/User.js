@@ -15,13 +15,13 @@ const UserSchema = new mongoose.Schema({
             createdAt: {type: Date, required: true, default: Date.now()}
         }
     ],
-    createAt: {type: Date, required: true, default: Date.now()},
     favorite_products: [
         {
            _id: {type: mongoose.Schema.Types.ObjectId, ref: "products"},
            createdAt: {type: Date, required: true, default: Date.now()}
         }
     ],
+    createAt: {type: Date, required: true, default: Date.now()},
     adminUser: {type: Boolean, required: true, default: false}
 })
 

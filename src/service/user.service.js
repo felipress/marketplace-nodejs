@@ -77,7 +77,8 @@ const removeUserFavoriteProduct = (id, product) => {
                     _id: product
                 }
             }
-        }
+        },
+        {rawResults: true}
     )
 }
 
