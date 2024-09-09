@@ -11,7 +11,7 @@ const OrderSchema = new mongoose.Schema({
     totalPrice: {type: Number, required: true},
     shipping: {type: Number, required: true},
     userId: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "users"},
-    finished: {type: Boolean, required: true}
+    finished: {type: Boolean, required: true, default: false}
 })
 
 const Order = mongoose.model("orders", OrderSchema)
