@@ -16,8 +16,15 @@ const removeOrder = (id) => {
     return Order.findByIdAndDelete(id)
 }
 
-const updateOrderStatus = (id, body) => {
-
+const updateOrderStatus = (id) => {
+    return Order.findOneAndUpdate(
+        {
+            _id: id
+        },
+        {
+            $set: {finished: true}
+        }
+    )
 }
 
 module.exports = {

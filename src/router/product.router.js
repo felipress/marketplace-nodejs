@@ -11,6 +11,6 @@ router.delete("/remove/:id", authMiddleware, productController.removeProduct)
 
 // Product category
 router.post("/addProductCategory/:id", authMiddleware, productController.addProductCategory)
-router.delete("/removeProductCategory", authMiddleware, productController.removeProductCategory)
+router.delete("/removeProductCategory/:id", authMiddleware, productController.removeProductCategory)
 
 module.exports = router

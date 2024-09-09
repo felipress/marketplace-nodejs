@@ -84,7 +84,7 @@ const addProductCategory = async (req, res) => {
 
 const removeProductCategory = async (req, res) => {
     try{
-        const category = await productService.removeProductCategory(req.body)
+        const category = await productService.removeProductCategory(req.params.id, req.body)
         return res.status(200).send(category)
     }
     catch(err){

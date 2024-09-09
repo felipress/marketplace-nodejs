@@ -36,9 +36,9 @@ const addProductCategory = (id, category) => {
     )
 }
 
-const removeProductCategory = (category) => {
+const removeProductCategory = (id, category) => {
     return Product.findOneAndUpdate(
-        {_id: category.id},
+        {_id: id},
         {
             $pull: {
                 category: {

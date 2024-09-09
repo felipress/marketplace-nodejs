@@ -58,7 +58,7 @@ const removeOrder = async (req, res) => {
 
 const updateOrderStatus = async (req, res) => {
     try{
-        const order = await orderService.updateOrderStatus(req.params.id, req.body)
+        const order = await orderService.updateOrderStatus(req.params.id)
         return res.status(200).send(order)
     }
     catch(err){
