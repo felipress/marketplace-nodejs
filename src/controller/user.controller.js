@@ -129,7 +129,11 @@ const addUserAddress = async (req, res) => {
 }
 const removeUserAddress = async (req, res) => {
     try{
-        const {userId, addressId} = req.body
+        const addressId = req.body.id
+        const userId = req.userId
+        
+        console.log(addressId)
+
         const address = await userService.removeUserAddress(userId, addressId)
 
         // Check's if the value was deleted from database

@@ -49,7 +49,8 @@ const removeUserAddress = (userId, addressId) => {
                     _id: addressId
                 }
             }
-        }
+        },
+        {rawResults: true}
     )
 }
 
