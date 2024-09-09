@@ -118,6 +118,27 @@ const validateId = (req, res, next) => {
     }
 }
 
+const validateLogin = (req, res, next) => {
+    let errors = []
+
+    validateRequiredAttribute(errors, req.body.email, "email")
+    validateRequiredAttribute(errors, req.body.password, "password")
+
+    if(errors.length == 1){
+        return res.status(400).send({
+            message: `O campo ${errors} é obrigatório.`
+        })
+    }
+    else if(errors.length > 1){
+        return res.status(400).send({
+            message: `Os campos ${errors} são obrigatórios.`
+        })
+    }
+    else{
+        return next()
+    }
+}
+
 // Private function 
 const validateRequiredAttribute = (errorArray, attribute, label) => {
     if(!attribute){
@@ -131,5 +152,6 @@ module.exports = {
     validateCategory,
     validateOrder,
     validateShoppingCart,
-    validateId
+    validateId,
+    validateLogin
 }
