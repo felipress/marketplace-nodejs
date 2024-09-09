@@ -3,18 +3,19 @@ const router = express.Router()
 const userController = require("../controller/user.controller")
 
 const authMiddleware = require("../middleware/auth.middleware")
+const {validateUser} = require("../middleware/validation.middleware")
 
 // GET routes
 router.get("/findById/:id", authMiddleware, userController.findUserById)
 router.get("/findAll", userController.findAllUsers)
 
 // POST routes
-router.post("/create", userController.createUser)
+router.post("/create", validateUser, userController.createUser)
 router.post("/addAddress/:id", authMiddleware, userController.addUserAddress)
 router.post("/addFavoriteProduct/:id", authMiddleware, userController.addUserFavoriteProduct)
 
 // PUT route
-router.put("/update/:id", authMiddleware, userController.updateUser)
+router.put("/update/:id", authMiddleware, validateUser, userController.updateUser)
 
 // DELETE routes
 router.delete("/remove/:id", authMiddleware, userController.removeUser)

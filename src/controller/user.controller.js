@@ -44,12 +44,6 @@ const findAllUsers = async (req, res) => {
 const createUser = async (req, res) => {
     try{
         const body = req.body
-
-        // Validating required fields
-        validateRequiredField(res, "name", body.name)
-        validateRequiredField(res, "email", body.email)
-        validateRequiredField(res, "password", body.password)
-
         // Creating user in the database
         return res.status(201).send(await userService.createUser(body))
     }
