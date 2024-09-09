@@ -5,7 +5,6 @@ const ShoppingCartSchema = new mongoose.Schema({
         {
             _id: {type: mongoose.Schema.Types.ObjectId, ref: "products"},
             quantity: {type: Number, required: true}
-
         }
     ],
     createdAt: {type: Date, default: Date.now()},
