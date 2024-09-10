@@ -16,32 +16,106 @@
         }
     ],
     "paths": {
-        "/user/findById": {
-            "get": {
-                "summary": "Lista o usuário informado pelo ID.",
-                "description": "Rota responsável por listar um único usuário pelo ID informado na requisição.",
-                "tags": ["User"]
-            }
-        },
         "/user/findAll": {
             "get": {
+                "security": [
+                    {"bearerAuth": []}
+                ],
                 "summary": "Lista todos os usuários.",
                 "description": "Rota responsável por lista todos os usuários da API.",
                 "tags": ["User"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "name": "limit"
+                    },
+                    {
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "name": "offset"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "OK, tarefa realizada com sucesso"
+                        "description": "OK, tarefa realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "$ref": "#/components/schemas/user"
+                                    }
+                                }
+                            }
+                        }
                     },
                     "401": {
-                        "description": "UNAUTHORIZED, erro de autenticação ou problemas com token"
+                        "description": "UNAUTHORIZED, erro de autenticação ou problemas com token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {"type": "string"}
+                                    }
+                                }
+                            }
+                        }
                     },
                     "404": {
-                        "description": "NOT FOUND, nenhum usuário encontrado"
+                        "description": "NOT FOUND, nenhum usuário encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {"type": "string"}
+                                    }
+                                }
+                            }
+                        }
                     },
                     "500": {
-                        "description": "INTERNAL SERVER ERROR, erro no servidor da aplicação"
+                        "description": "INTERNAL SERVER ERROR, erro no servidor da aplicação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {"type": "string"}
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+            }
+        },
+        "/user/findById/{id}": {
+            "security": [
+                {"bearerAuth": []}
+            ],
+            "get": {
+                "summary": "Lista o usuário informado pelo ID.",
+                "description": "Rota responsável por listar um único usuário pelo ID informado na requisição.",
+                "tags": ["User"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "name": "id" 
+                    }
+                ]
+                
             }
         },
         "/user/create": {
@@ -51,20 +125,140 @@
                 "tags": ["User"]
             }
         },
-        "/user/update": {
+        "/user/update/{id}": {
             "put": {
                 "summary": "Atualiza um usuário.",
                 "description": "Rota responsável pela atualização de novos usuários na API.",
                 "tags": ["User"]
             }
         },
-        "/user/remove": {
+        "/user/remove/{id}": {
             "delete": {
                 "summary": "Remove um usuário.",
                 "description": "Rota responsável pelo remover um usuário informado por ID.",
                 "tags": ["User"]
             }
+        },
+
+        "/auth/login": {
+            "post": {
+                "summary": "Autentica um usuário.",
+                "description": "Rota responsável pelo login de usuários na API. A requisição espera como parâmetros de entrada e-mail e senha",
+                "tags": ["Auth"]
+            }
         }
+
         
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "schemas": {
+            "user": {
+                "type": "object", 
+                "properties": {
+                    "name": {"type": "string"},
+                    "email": {"type": "string"},
+                    "password": {"type": "string"},
+                    "image": {"type": "string"},
+                    "address": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "_id": {"type": "string"},
+                                "street": {"type": "string"},
+                                "number": {"type": "integer"},
+                                "complement": {"type": "string"},
+                                "zipcode": {"type": "string"},
+                                "createdAt": {"type": "string"}
+                            }
+                        }
+                    },
+                    "favorite_products": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "_id": {"type": "string"},
+                                "createdAt": {"type": "string"}
+                            }
+                        }
+                    },
+                    "createdAt": {"type": "string"},
+                    "admin": {"type": "boolean"}
+                }
+            },
+            "category": {
+                "type": "object",
+                "properties": {
+                    "_id": {"type": "string"},
+                    "name": {"type": "string"},
+                    "createdAt": {"type": "string"}
+                }
+            },
+            "product": {
+                "type": "object",
+                "properties": {
+                    "_id": {"type": "string"},
+                    "name": {"type": "string"},
+                    "description": {"type": "string"},
+                    "unitPrice": {"type": "integer"},
+                    "image": {"type": "string"},
+                    "barcode": {"type": "integer"},
+                    "category": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "_id": {"type": "string"},
+                                "createAt": {"type": "string"}
+                            }
+                        }
+                    }
+                }
+            },
+            "shoppingcart": {
+                "type": "object",
+                "properties": {
+                    "_id": {"type": "string"},
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "_id": {"type": "string"},
+                                "quantity": {"type": "integer"}
+                            }
+                        }
+                    },
+                    "createAt": {"type": "string"},
+                    "totalPrice": {"type": "integer"},
+                    "shipping": {"type": "integer"},
+                    "userId": {"type": "string"}
+                }
+            },
+            "order": {
+                "type": "object",
+                "properties": {
+                    "_id": {"type": "string"},
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "_id": {"type": "string"},
+                                "quantity": {"type": "integer"}
+                            }
+                        }
+                    },
+                    "createAt": {"type": "string"},
+                    "totalPrice": {"type": "integer"},
+                    "shipping": {"type": "integer"},
+                    "userId": {"type": "string"},
+                    "finished": {"type": "boolean"}
+                }
+            }
+        }
     }
 }

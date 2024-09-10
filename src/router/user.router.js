@@ -10,7 +10,7 @@ const pagination = require("../middleware/pagination.middleware")
 
 // GET routes
 router.get("/findById/:id", authMiddleware, validateIdParams, userController.findUserById)
-router.get("/findAll", pagination, userController.findAllUsers)
+router.get("/findAll", authMiddleware, pagination, userController.findAllUsers)
 
 // POST routes
 router.post("/create", validateUser, userController.createUser)
