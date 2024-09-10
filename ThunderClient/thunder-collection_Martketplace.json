@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "Martketplace",
     "collectionId": "1d81a7fa-6271-44e1-9301-b7df7c1b0267",
-    "dateExported": "2024-09-09T16:14:54.012Z",
+    "dateExported": "2024-09-10T13:28:20.469Z",
     "version": "1.2",
     "folders": [
         {
@@ -58,7 +58,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-09-09T13:35:25.295Z",
-            "modified": "2024-09-09T16:04:13.377Z",
+            "modified": "2024-09-09T22:02:24.912Z",
             "headers": [],
             "body": {
                 "type": "json",
@@ -99,7 +99,7 @@
             "method": "POST",
             "sortNum": 40000,
             "created": "2024-09-09T13:41:03.368Z",
-            "modified": "2024-09-09T15:53:31.913Z",
+            "modified": "2024-09-09T17:45:31.329Z",
             "headers": [],
             "body": {
                 "type": "json",
@@ -153,11 +153,11 @@
             "colId": "1d81a7fa-6271-44e1-9301-b7df7c1b0267",
             "containerId": "cd23e1d7-47af-42f0-9b30-9a4c5cf023aa",
             "name": "findById",
-            "url": "/user/findById/66d8cb313f601330b5313022",
+            "url": "/user/findById/66d8cb313f601330b53130221818",
             "method": "GET",
             "sortNum": 75000,
             "created": "2024-09-09T14:10:20.671Z",
-            "modified": "2024-09-09T15:57:37.452Z",
+            "modified": "2024-09-09T21:56:02.976Z",
             "headers": []
         },
         {
@@ -165,12 +165,24 @@
             "colId": "1d81a7fa-6271-44e1-9301-b7df7c1b0267",
             "containerId": "5c60d9ac-14a2-45ec-9433-59344acf5685",
             "name": "findAll",
-            "url": "/product/findAll",
+            "url": "/product/findAll?limit=1&offset=1",
             "method": "GET",
             "sortNum": 80000,
             "created": "2024-09-09T13:49:14.887Z",
-            "modified": "2024-09-09T15:54:25.326Z",
-            "headers": []
+            "modified": "2024-09-09T22:40:57.220Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "offset",
+                    "value": "1",
+                    "isPath": false
+                }
+            ]
         },
         {
             "_id": "649d52eb-87ac-4b1a-b84e-613b08e1ea32",
@@ -227,7 +239,7 @@
             "method": "POST",
             "sortNum": 120000,
             "created": "2024-09-09T14:00:30.007Z",
-            "modified": "2024-09-09T15:55:32.160Z",
+            "modified": "2024-09-10T13:15:01.411Z",
             "headers": [],
             "body": {
                 "type": "json",
@@ -244,11 +256,11 @@
             "method": "DELETE",
             "sortNum": 130000,
             "created": "2024-09-09T14:00:45.490Z",
-            "modified": "2024-09-09T15:56:06.512Z",
+            "modified": "2024-09-10T13:15:42.196Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"id\": \"66dcda06869e352ca5fd43ee\"\n}",
+                "raw": "{\n  \"id\": \"66dcda19869e352ca5fd43f7\"\n}",
                 "form": []
             }
         },
@@ -273,11 +285,11 @@
             "method": "POST",
             "sortNum": 160000,
             "created": "2024-09-09T14:10:11.863Z",
-            "modified": "2024-09-09T15:58:04.772Z",
+            "modified": "2024-09-10T13:27:38.821Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Testing\",\n  \"email\": \"testings@test.com\",\n  \"password\": \"12345678\"\n}",
+                "raw": "{\n  \"name\": \"Testing\",\n  \"email\": \"testings@tests.com\",\n  \"password\": \"123456\",\n  \"image\": \"aasf\"\n}",
                 "form": []
             }
         },
@@ -319,7 +331,7 @@
             "method": "POST",
             "sortNum": 200000,
             "created": "2024-09-09T14:15:29.150Z",
-            "modified": "2024-09-09T15:58:44.163Z",
+            "modified": "2024-09-10T13:26:23.129Z",
             "headers": [],
             "body": {
                 "type": "json",
@@ -357,11 +369,11 @@
             "method": "POST",
             "sortNum": 207500,
             "created": "2024-09-09T14:23:14.800Z",
-            "modified": "2024-09-09T15:58:57.183Z",
+            "modified": "2024-09-10T12:42:22.378Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"street\": \"Rua Ruy Barbosa\",\n  \"number\": 119,\n  \"zipcode\": \"40201-000\"\n}",
+                "raw": "[\n  {\n    \"streets\": \"Rua Ruy Barbosa\",\n    \"number\": 119,\n    \"zipcode\": \"40201-000\"\n  }\n]",
                 "form": []
             }
         },
@@ -399,12 +411,24 @@
             "colId": "1d81a7fa-6271-44e1-9301-b7df7c1b0267",
             "containerId": "f937d5c1-c208-4313-9a54-6e75b784344f",
             "name": "findAll",
-            "url": "/shoppingCart/findAll",
+            "url": "/shoppingCart/findAll?limit=2&offset=0",
             "method": "GET",
             "sortNum": 270000,
             "created": "2024-09-09T15:29:55.837Z",
-            "modified": "2024-09-09T15:56:36.088Z",
-            "headers": []
+            "modified": "2024-09-09T22:41:30.064Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "offset",
+                    "value": "0",
+                    "isPath": false
+                }
+            ]
         },
         {
             "_id": "42300a67-8889-4eee-b135-30510dfedd1d",
@@ -469,12 +493,24 @@
             "colId": "1d81a7fa-6271-44e1-9301-b7df7c1b0267",
             "containerId": "37aaf730-3e24-4fc5-aa61-c9f621b8ae92",
             "name": "findAll",
-            "url": "/order/findAll",
+            "url": "/order/findAll?limit=2&offset=0",
             "method": "GET",
             "sortNum": 320000,
             "created": "2024-09-09T16:09:40.440Z",
-            "modified": "2024-09-09T16:10:59.109Z",
-            "headers": []
+            "modified": "2024-09-09T22:41:51.809Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "2",
+                    "isPath": false
+                },
+                {
+                    "name": "offset",
+                    "value": "0",
+                    "isPath": false
+                }
+            ]
         },
         {
             "_id": "26f0122a-b1f6-423a-b415-1da8be49e4d8",
@@ -485,7 +521,7 @@
             "method": "POST",
             "sortNum": 330000,
             "created": "2024-09-09T16:09:46.232Z",
-            "modified": "2024-09-09T16:11:52.559Z",
+            "modified": "2024-09-09T17:48:34.256Z",
             "headers": [],
             "body": {
                 "type": "json",
@@ -527,5 +563,5 @@
             "baseUrl": "localhost:3000"
         }
     },
-    "ref": "UbU6fgAbjwx9Fh5PNf_M0ybdBtf8wgmd1b1OhkXM6jrBdEGlXCXBR3YFUjl-KUx7WxvUQGXTrqVHY9lhz6XX0Q"
+    "ref": "UbU6fgAbjwx9Fh5PNf_M077tlNuh94Nya9j7OdKmepvgeNHcH2PEliMTN7WyARCwgBpc3DcKlJPQWTIwnFwQWw"
 }
