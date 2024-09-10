@@ -24,6 +24,42 @@ const validateUser = (req, res, next) => {
     }
 }
 
+const validateAddress = (req, res, next) => {
+    let errors = []
+
+    let body = req.body
+    if(typeof body != Array){
+        body = new Array(body)
+    }
+
+    body.map((value, key) => {
+        if(!value.street){
+            errors.push(`'${key+1} - stret'`)
+        }
+        if(!value.number){
+            errors.push(`'${key+1} - number'`)
+        }
+        if(!value.zipcode){
+            errors.push(`'${key+1}' - zipcode'`)
+        }
+    })
+
+    
+    if(errors.length == 1){
+        return res.status(400).send({
+            message: `O campo ${errors} é obrigatório.`
+        })
+    }
+    else if(errors.length > 1){
+        return res.status(400).send({
+            message: `Os campos ${errors} são obrigatórios.`
+        })
+    }
+    else{
+        return next()
+    }
+}
+
 const validateProduct = (req, res, next) => {
     let errors = []
 
@@ -107,8 +143,19 @@ const validateShoppingCart = (req, res, next) => {
     }
 }
 
-const validateId = (req, res, next) => {
+const validateIdParams = (req, res, next) => {
     if(ObjectId.isValid(req.params.id)){
+        return next();
+    }
+    else{
+        return res.status(400).send({
+            message: `O ID informado não é válido.`
+        })
+    }
+}
+
+const validateIdBody = (req, res, next) => {
+    if(ObjectId.isValid(req.body.id)){
         return next();
     }
     else{
@@ -141,17 +188,19 @@ const validateLogin = (req, res, next) => {
 
 // Private function 
 const validateRequiredAttribute = (errorArray, attribute, label) => {
-    if(!attribute){
+    if(!attribute  || attribute == undefined){
         errorArray.push(label)
     }
 }
 
 module.exports = {
     validateUser,
+    validateAddress,
     validateProduct,
     validateCategory,
     validateOrder,
     validateShoppingCart,
-    validateId,
+    validateIdParams,
+    validateIdBody,
     validateLogin
 }
