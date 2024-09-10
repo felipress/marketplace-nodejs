@@ -1,0 +1,70 @@
+{
+    "openapi":"3.1.0",
+    "info": {
+        "title": "API Marketplace",
+        "description": "API de Marketplace completa contendo o CRUD para variados assuntos.",
+        "contact": {
+            "name": "Felipe Magalhães",
+            "email": "felipemagalhaes@alunounyleya.com.br"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "API e teste local"
+        }
+    ],
+    "paths": {
+        "/user/findById": {
+            "get": {
+                "summary": "Lista o usuário informado pelo ID.",
+                "description": "Rota responsável por listar um único usuário pelo ID informado na requisição.",
+                "tags": ["User"]
+            }
+        },
+        "/user/findAll": {
+            "get": {
+                "summary": "Lista todos os usuários.",
+                "description": "Rota responsável por lista todos os usuários da API.",
+                "tags": ["User"],
+                "responses": {
+                    "200": {
+                        "description": "OK, tarefa realizada com sucesso"
+                    },
+                    "401": {
+                        "description": "UNAUTHORIZED, erro de autenticação ou problemas com token"
+                    },
+                    "404": {
+                        "description": "NOT FOUND, nenhum usuário encontrado"
+                    },
+                    "500": {
+                        "description": "INTERNAL SERVER ERROR, erro no servidor da aplicação"
+                    }
+                }
+            }
+        },
+        "/user/create": {
+            "post": {
+                "summary": "Cria um novo usuário.",
+                "description": "Rota responsável por criar novos usuários na API.",
+                "tags": ["User"]
+            }
+        },
+        "/user/update": {
+            "put": {
+                "summary": "Atualiza um usuário.",
+                "description": "Rota responsável pela atualização de novos usuários na API.",
+                "tags": ["User"]
+            }
+        },
+        "/user/remove": {
+            "delete": {
+                "summary": "Remove um usuário.",
+                "description": "Rota responsável pelo remover um usuário informado por ID.",
+                "tags": ["User"]
+            }
+        }
+        
+    }
+}
